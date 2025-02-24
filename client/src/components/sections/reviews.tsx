@@ -10,23 +10,7 @@ export function Reviews() {
     retry: false
   });
 
-  const mockReviews = [
-    {
-      name: "John D.",
-      text: "Outstanding service! The team was professional, punctual, and did an excellent job with our electrical installation.",
-      rating: 5
-    },
-    {
-      name: "Sarah M.",
-      text: "Very impressed with their work ethic and attention to detail. Would definitely recommend to anyone needing electrical work.",
-      rating: 5
-    },
-    {
-      name: "Michael R.",
-      text: "Fast response time and great communication throughout the entire process. Quality work at a fair price.",
-      rating: 5
-    }
-  ];
+  const reviews = business?.five_star_reviews || [];
 
   return (
     <section 
@@ -43,31 +27,36 @@ export function Reviews() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-white mb-4">What Our Customers Say</h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied customers have to say about our electrical services.
+            Don't just take our word for it. Here's what our satisfied customers have to say about {business?.basic_info.name}'s electrical services.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {mockReviews.map((review, index) => (
+          {reviews.slice(0, 3).map((review, index) => (
             <div key={index} className="bg-white/10 backdrop-blur-sm p-6 rounded-lg">
               <div className="flex gap-1 mb-3">
-                {[...Array(review.rating)].map((_, i) => (
+                {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
               <p className="text-gray-100 mb-4">"{review.text}"</p>
-              <p className="text-gray-300 font-semibold">{review.name}</p>
+              <p className="text-gray-300 font-semibold">{review.reviewer_name}</p>
+              {review.date && (
+                <p className="text-gray-400 text-sm">
+                  {new Date(review.date).toLocaleDateString()}
+                </p>
+              )}
             </div>
           ))}
         </div>
 
-        {business?.five_star_reviews?.[0]?.text && business.reviews_link && (
+        {business?.social_media?.reviews_link && (
           <div className="text-center">
             <Button 
               size="lg"
               variant="secondary"
               className="bg-white text-primary hover:bg-gray-100"
-              onClick={() => window.open(business.reviews_link, '_blank')}
+              onClick={() => window.open(business.social_media.reviews_link, '_blank')}
             >
               Read More Reviews on Google
             </Button>

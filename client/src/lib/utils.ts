@@ -39,15 +39,20 @@ export const getBusinessData = async () => {
   }
 
   try {
-    const response = await fetch(
-      'https://raw.githubusercontent.com/atlasgrowth/alabamaelectric/main/electricians.json'
-    );
+    // Fetch both business data and reviews
+    const [businessResponse, reviewsResponse] = await Promise.all([
+      fetch('https://raw.githubusercontent.com/atlasgrowth/alabamaelectric/main/electricians.json'),
+      fetch('https://raw.githubusercontent.com/atlasgrowth/alabamaelectric/main/electricians_with_reviews.json')
+    ]);
 
-    if (!response.ok) {
-      throw new Error(`Failed to load business data: ${response.status}`);
+    if (!businessResponse.ok || !reviewsResponse.ok) {
+      throw new Error(`Failed to load data: ${businessResponse.status} ${reviewsResponse.status}`);
     }
 
-    const rawData = await response.json() as Record<string, RawBusinessData>;
+    const [rawData, reviewsData] = await Promise.all([
+      businessResponse.json() as Promise<Record<string, RawBusinessData>>,
+      reviewsResponse.json() as Promise<Record<string, { reviews: Array<{ text: string; reviewer_name: string; date: string }> }>>
+    ]);
 
     // Find the business by the 's' parameter
     const businessEntries = Object.entries(rawData);
@@ -61,6 +66,9 @@ export const getBusinessData = async () => {
 
     const [_, data] = business;
 
+    // Get reviews for this business
+    const businessReviews = reviewsData[businessId]?.reviews || [];
+
     // Transform the data to match our schema
     const normalizedData = {
       basic_info: {
@@ -72,11 +80,19 @@ export const getBusinessData = async () => {
         longitude: safeParseFloat(data.longitude),
         working_hours: {},
       },
-      five_star_reviews: data.reviews ? [{
-        text: data.reviews_link ? "View our reviews on Google" : "Great service and professional work",
-        reviewer_name: "Customer Review",
-        date: new Date().toISOString(),
-      }] : undefined,
+      five_star_reviews: businessReviews.length > 0 
+        ? businessReviews.map(review => ({
+            text: review.text,
+            reviewer_name: review.reviewer_name,
+            date: review.date,
+          }))
+        : data.reviews 
+          ? [{
+              text: data.reviews_link ? "View our reviews on Google" : "Great service and professional work",
+              reviewer_name: "Customer Review",
+              date: new Date().toISOString(),
+            }]
+          : undefined,
       social_media: {
         facebook: "",
         instagram: "",

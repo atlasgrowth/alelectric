@@ -1,0 +1,94 @@
+Looking at your Vite configuration and the GitHub repository, I'll help you set up deployment to GitHub Pages. Here's a complete plan with the necessary code:
+First, let's update your Vite config to support GitHub Pages deployment:
+javascriptCopyimport { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
+import path, { dirname } from "path";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export default defineConfig({
+  plugins: [
+    react(),
+    runtimeErrorOverlay(),
+    themePlugin(),
+    ...(process.env.NODE_ENV !== "production" &&
+    process.env.REPL_ID !== undefined
+      ? [
+          await import("@replit/vite-plugin-cartographer").then((m) =>
+            m.cartographer(),
+          ),
+        ]
+      : []),
+  ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "client", "src"),
+      "@shared": path.resolve(__dirname, "shared"),
+    },
+  },
+  root: path.resolve(__dirname, "client"),
+  build: {
+    outDir: path.resolve(__dirname, "dist/public"),
+    emptyOutDir: true,
+  },
+  // GitHub Pages configuration
+  base: "/alelectric/",
+});
+Now, let's create a deployment script (deploy.sh) at the root of your project:
+bashCopy#!/bin/bash
+echo "Starting deployment process..."
+
+# Build your project
+echo "Building project..."
+npm run build
+
+# Navigate to build directory
+cd dist/public
+
+# Create a .nojekyll file to bypass Jekyll processing
+touch .nojekyll
+
+# Initialize git in the build directory
+git init
+git checkout -b gh-pages
+git add .
+git commit -m "Deploy to GitHub Pages"
+
+# Force push to the gh-pages branch
+echo "Pushing to GitHub Pages..."
+git push --force "https://${GITHUB_TOKEN}@github.com/atlasgrowth/alelectric.git" gh-pages:gh-pages
+
+echo "Deployment complete!"
+Make sure to make the script executable:
+bashCopychmod +x deploy.sh
+You'll also need to update your package.json to include a deploy script. Add this to your scripts section:
+jsonCopy"scripts": {
+  "dev": "vite",
+  "build": "tsc && vite build",
+  "preview": "vite preview",
+  "deploy": "./deploy.sh"
+}
+To run the deployment from Replit, you can create a .replit file at the root of your project:
+Copyrun = "npm run dev"
+deployCommand = "./deploy.sh"
+Instructions for Deployment:
+
+Make sure you've set the GITHUB_TOKEN secret in your Replit project
+Update your Vite config with the changes above
+Add the deploy.sh script to your project root
+Make it executable with chmod +x deploy.sh
+Update your package.json with the deploy script
+Create the .replit file
+Run the deployment with either:
+Copynpm run deploy
+or use the Replit deploy button
+
+Important Notes:
+
+The GitHub Pages site will be available at: https://atlasgrowth.github.io/alelectric/
+Your site will use client-side routing, so you'll need to ensure your router is configured for GitHub Pages (using HashRouter or properly handling routes)
+For any images or assets referenced in your code, make sure they use relative URLs or are referenced through your import system

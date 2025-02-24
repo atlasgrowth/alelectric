@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import Residential from "@/pages/residential";
 import Commercial from "@/pages/commercial";
 import Industrial from "@/pages/industrial";
+import { ChatWidget } from "@/components/chat-widget";
 
 function Router() {
   return (
@@ -26,6 +27,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router />
+      <ChatWidget />
       <Toaster />
     </QueryClientProvider>
   );

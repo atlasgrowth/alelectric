@@ -24,8 +24,14 @@ export function Navbar() {
           <Link href="/">
             <Button variant="ghost" className="text-sm font-medium">Home</Button>
           </Link>
-          <Link href="/services">
-            <Button variant="ghost" className="text-sm font-medium">Services</Button>
+          <Link href="/residential">
+            <Button variant="ghost" className="text-sm font-medium">Residential</Button>
+          </Link>
+          <Link href="/commercial">
+            <Button variant="ghost" className="text-sm font-medium">Commercial</Button>
+          </Link>
+          <Link href="/industrial">
+            <Button variant="ghost" className="text-sm font-medium">Industrial</Button>
           </Link>
           <Link href="/contact">
             <Button variant="ghost" className="text-sm font-medium">Contact</Button>

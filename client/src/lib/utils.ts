@@ -32,10 +32,16 @@ interface RawBusinessData {
 
 export const getBusinessData = async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const businessId = urlParams.get('s') || 'example_business'; // Default to example business if no ID
+  const businessId = urlParams.get('s');
+
+  if (!businessId) {
+    throw new Error('Please provide a business ID in the URL using the "s" parameter');
+  }
 
   try {
-    const response = await fetch('/data/electricians.json');
+    const response = await fetch(
+      'https://raw.githubusercontent.com/atlasgrowth/alabamaelectric/main/electricians.json'
+    );
 
     if (!response.ok) {
       throw new Error(`Failed to load business data: ${response.status}`);

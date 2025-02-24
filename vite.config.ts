@@ -8,6 +8,9 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Use the environment variable to determine if we're in GitHub Pages mode
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+
 export default defineConfig({
   plugins: [
     react(),
@@ -29,6 +32,8 @@ export default defineConfig({
     },
   },
   root: path.resolve(__dirname, "client"),
+  // Only apply the base path when deploying to GitHub Pages
+  base: isGitHubPages ? "/alelectric/" : "/",
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,

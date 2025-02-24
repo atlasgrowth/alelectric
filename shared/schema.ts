@@ -15,6 +15,11 @@ export const businessDataSchema = z.object({
     reviewer_name: z.string(),
     date: z.string(),
   })).optional(),
+  social_media: z.object({
+    facebook: z.string(),
+    instagram: z.string(),
+    reviews_link: z.string().optional(),
+  })
 });
 
 export type BusinessData = z.infer<typeof businessDataSchema>;

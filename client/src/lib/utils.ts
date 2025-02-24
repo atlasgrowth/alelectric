@@ -39,8 +39,9 @@ export const getBusinessData = async () => {
   }
 
   try {
-    // Use a relative URL that works for both development and GitHub Pages
-    const response = await fetch('/data/electricians.json');
+    const response = await fetch(
+      'https://raw.githubusercontent.com/atlasgrowth/alabamaelectric/main/electricians.json'
+    );
 
     if (!response.ok) {
       throw new Error(`Failed to load business data: ${response.status}`);
@@ -69,13 +70,18 @@ export const getBusinessData = async () => {
         rating: safeParseFloat(data.rating),
         latitude: safeParseFloat(data.latitude),
         longitude: safeParseFloat(data.longitude),
-        working_hours: {},  // Add if available in the future
+        working_hours: {},
       },
       five_star_reviews: data.reviews ? [{
         text: data.reviews_link ? "View our reviews on Google" : "Great service and professional work",
         reviewer_name: "Customer Review",
         date: new Date().toISOString(),
       }] : undefined,
+      social_media: {
+        facebook: "",
+        instagram: "",
+        reviews_link: data.reviews_link
+      }
     };
 
     const parsed = businessDataSchema.safeParse(normalizedData);

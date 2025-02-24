@@ -3,10 +3,19 @@ import { Footer } from "@/components/sections/footer";
 import { useQuery } from "@tanstack/react-query";
 import { getBusinessData } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Phone, Clock, Shield, HardHat, Tool, Zap, 
-         Settings, Activity, Bolt, CheckCircle2, 
-         Factory, PowerIcon } from "lucide-react";
-import { useState } from "react";
+import { 
+  Phone, 
+  Clock, 
+  Shield, 
+  HardHat, 
+  Zap, 
+  Settings, 
+  Activity, 
+  Bolt, 
+  CheckCircle2, 
+  Factory, 
+  PowerIcon 
+} from "lucide-react";
 
 export default function Industrial() {
   const { data: business } = useQuery({
@@ -19,171 +28,158 @@ export default function Industrial() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      {/* Hero Section - Enhanced */}
-      <section className="relative h-[85vh] flex items-center">
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&q=80&w=2000)',
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent" />
         </div>
         <div className="container relative z-10">
-          <div className="max-w-3xl text-white">
-            <div className="inline-block bg-yellow-600 px-4 py-1 rounded-full mb-6">
-              <p className="text-white font-medium">HEAVY-DUTY SOLUTIONS</p>
+          <div className="max-w-3xl">
+            <div className="inline-block bg-primary/90 backdrop-blur-sm px-4 py-1 rounded-full mb-6">
+              <p className="text-primary-foreground font-medium text-sm">INDUSTRIAL SERVICES</p>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Industrial <span className="text-yellow-400">Electrical</span> Services
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white leading-tight">
+              Industrial <br/>
+              <span className="text-primary">Electrical</span> Solutions
             </h1>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed max-w-2xl">
-              Powerful, reliable electrical solutions for manufacturing plants, warehouses, and industrial facilities by {business?.basic_info.name}
-              {business?.basic_info.city && ` in ${business.basic_info.city}`}.
+            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+              Heavy-duty electrical solutions by {business?.basic_info.name}
+              {business?.basic_info.city && ` in ${business.basic_info.city}`}. 
+              Powering industry with reliable and efficient electrical services.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button 
                 size="lg" 
-                className="bg-yellow-600 hover:bg-yellow-700 text-white"
-                onClick={() => document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' })}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                onClick={() => window.location.href = `tel:${business?.basic_info.phone}`}
               >
-                Request Industrial Service
+                <Phone className="mr-2 h-5 w-5" />
+                Call Now
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
                 className="bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white hover:text-black"
-                onClick={() => window.location.href = `tel:${business?.basic_info.phone}`}
               >
-                <Phone className="mr-2 h-5 w-5" />
-                {business?.basic_info.phone || 'Contact Us'}
+                Get Quote
               </Button>
             </div>
 
-            {/* Trust indicators */}
+            {/* Trust Indicators */}
             <div className="flex flex-wrap gap-8 mt-12">
               <div className="flex items-center">
-                <div className="bg-white/20 p-2 rounded-full mr-3">
-                  <HardHat className="h-5 w-5 text-yellow-300" />
+                <div className="bg-primary/20 p-2 rounded-full mr-3">
+                  <HardHat className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white/90">Safety-First Approach</span>
+                <span className="text-white/90">Safety First</span>
               </div>
               <div className="flex items-center">
-                <div className="bg-white/20 p-2 rounded-full mr-3">
-                  <Shield className="h-5 w-5 text-yellow-300" />
+                <div className="bg-primary/20 p-2 rounded-full mr-3">
+                  <Shield className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white/90">Licensed Industrial Experts</span>
+                <span className="text-white/90">Licensed & Insured</span>
               </div>
               <div className="flex items-center">
-                <div className="bg-white/20 p-2 rounded-full mr-3">
-                  <Clock className="h-5 w-5 text-yellow-300" />
+                <div className="bg-primary/20 p-2 rounded-full mr-3">
+                  <Clock className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-white/90">24/7 Emergency Support</span>
+                <span className="text-white/90">24/7 Support</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Overview Section */}
-      <section className="py-20 bg-white">
+      {/* Services Grid */}
+      <section className="py-24 bg-white">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Industrial-Grade Electrical Services</h2>
+            <div className="inline-block bg-primary/10 px-4 py-1 rounded-full mb-4">
+              <p className="text-primary font-medium text-sm">OUR SERVICES</p>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Industrial-Grade <span className="text-primary">Electrical</span> Services
+            </h2>
             <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              Specialized electrical solutions for the unique demands of industrial environments and equipment.
+              Specialized electrical solutions for manufacturing, processing, and industrial facilities.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Service Card 1 */}
-            <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow group">
-              <div className="bg-yellow-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-yellow-600 transition-colors">
-                <Bolt className="h-8 w-8 text-yellow-600 group-hover:text-white transition-colors" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">High Voltage Systems</h3>
-              <p className="text-gray-600 mb-4">Installation and maintenance of industrial-grade electrical systems for heavy machinery and equipment.</p>
-              <ul className="space-y-2 mb-4">
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  Industrial power supplies
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  Transformer installation
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  High voltage testing
-                </li>
-              </ul>
-            </div>
-
-            {/* Service Card 2 */}
-            <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow group">
-              <div className="bg-yellow-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-yellow-600 transition-colors">
-                <Factory className="h-8 w-8 text-yellow-600 group-hover:text-white transition-colors" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Service Cards */}
+            <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
+              <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
+                <Factory className="h-8 w-8 text-primary group-hover:text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Equipment Installation</h3>
-              <p className="text-gray-600 mb-4">Expert installation of industrial machinery and equipment with proper power requirements and safety protocols.</p>
-              <ul className="space-y-2 mb-4">
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  Machine electrical hookups
+              <p className="text-gray-600 group-hover:text-white/90 mb-4">
+                Expert installation of industrial machinery and equipment.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
+                  Machine hookups
                 </li>
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
                   Production line wiring
                 </li>
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
                   Equipment testing
                 </li>
               </ul>
             </div>
 
-            {/* Service Card 3 */}
-            <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow group">
-              <div className="bg-yellow-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-yellow-600 transition-colors">
-                <PowerIcon className="h-8 w-8 text-yellow-600 group-hover:text-white transition-colors" />
+            <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
+              <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
+                <PowerIcon className="h-8 w-8 text-primary group-hover:text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Power Distribution</h3>
-              <p className="text-gray-600 mb-4">Efficient power distribution solutions for large industrial facilities, ensuring reliable power where you need it.</p>
-              <ul className="space-y-2 mb-4">
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  Industrial bus duct systems
+              <p className="text-gray-600 group-hover:text-white/90 mb-4">
+                Efficient power distribution solutions for large facilities.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
+                  Bus duct systems
                 </li>
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  Power distribution panels
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
+                  Distribution panels
                 </li>
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  Load balancing solutions
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
+                  Load balancing
                 </li>
               </ul>
             </div>
 
-            {/* Service Card 4 */}
-            <div className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow group">
-              <div className="bg-yellow-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-yellow-600 transition-colors">
-                <Settings className="h-8 w-8 text-yellow-600 group-hover:text-white transition-colors" />
+            <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
+              <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
+                <Settings className="h-8 w-8 text-primary group-hover:text-primary" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Industrial Controls</h3>
-              <p className="text-gray-600 mb-4">Advanced control systems for automated processes, increasing efficiency and precision in manufacturing.</p>
-              <ul className="space-y-2 mb-4">
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  PLC installation & programming
+              <h3 className="text-xl font-semibold mb-3">Control Systems</h3>
+              <p className="text-gray-600 group-hover:text-white/90 mb-4">
+                Advanced control systems for automated processes.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
+                  PLC systems
                 </li>
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  Motor control centers
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
+                  Motor controls
                 </li>
-                <li className="flex items-center text-gray-700">
-                  <CheckCircle2 className="h-4 w-4 text-yellow-500 mr-2" />
-                  SCADA system integration
+                <li className="flex items-center">
+                  <CheckCircle2 className="h-4 w-4 text-primary group-hover:text-white mr-2" />
+                  SCADA integration
                 </li>
               </ul>
             </div>
@@ -242,7 +238,8 @@ export default function Industrial() {
                 <div className="bg-white p-6 rounded-xl shadow-sm">
                   <div className="flex items-center mb-4">
                     <div className="bg-yellow-100 p-3 rounded-full mr-4">
-                      <Tool className="h-6 w-6 text-yellow-600" />
+                      {/* Removed Tool Icon */}
+                      <HardHat className="h-6 w-6 text-yellow-600" />
                     </div>
                     <h3 className="font-bold text-lg">Experienced Technicians</h3>
                   </div>

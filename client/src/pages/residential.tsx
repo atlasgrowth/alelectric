@@ -12,11 +12,9 @@ import {
   Zap,
   Lightbulb, 
   Activity, 
-  Wifi as WifiIcon, 
-  ThermometerSun,
+  Wifi,
   CheckCircle2 
 } from "lucide-react";
-import { useState } from "react";
 
 export default function Residential() {
   const { data: business } = useQuery({
@@ -28,15 +26,15 @@ export default function Residential() {
   const faqs = [
     {
       question: "How often should my home's electrical system be inspected?",
-      answer: "We recommend a comprehensive electrical inspection every 3-5 years for homes less than 25 years old, and every 1-2 years for older homes. However, if you're experiencing issues like flickering lights, tripping breakers, or warm outlets, you should schedule an inspection immediately."
+      answer: "We recommend a comprehensive electrical inspection every 3-5 years for homes less than 25 years old, and every 1-2 years for older homes."
     },
     {
       question: "What are signs that I need to rewire my home?",
-      answer: "Signs that indicate you may need rewiring include: frequent circuit breaker trips, burning smell around outlets or switches, discolored outlets, buzzing sounds from outlets, aluminum wiring (in homes built 1965-1973), lack of grounded outlets, and homes older than 40 years that haven't been rewired."
+      answer: "Signs include frequent circuit breaker trips, burning smell around outlets, discolored outlets, and buzzing sounds from outlets."
     },
     {
-      question: "How long does a typical residential electrical installation take?",
-      answer: "The timeframe varies based on the project scope. Simple installations like ceiling fans may take 1-2 hours, while rewiring an entire home could take 3-7 days. During your consultation, our electricians will provide a detailed timeline specific to your project."
+      question: "How long does a typical residential installation take?",
+      answer: "Simple installations may take 1-2 hours, while rewiring an entire home could take 3-7 days."
     }
   ];
 
@@ -44,7 +42,7 @@ export default function Residential() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      {/* Modern Hero Section */}
+      {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -127,14 +125,14 @@ export default function Residential() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Service Card 1 */}
+            {/* Service Cards */}
             <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
               <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
                 <Zap className="h-8 w-8 text-primary group-hover:text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Electrical Installation</h3>
               <p className="text-gray-600 group-hover:text-white/90 mb-4">
-                Complete wiring solutions for new constructions, renovations, and additions.
+                Complete wiring solutions for new constructions and renovations.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center">
@@ -152,14 +150,13 @@ export default function Residential() {
               </ul>
             </div>
 
-            {/* Service Card 2 */}
             <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
               <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
                 <Lightbulb className="h-8 w-8 text-primary group-hover:text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Lighting Solutions</h3>
               <p className="text-gray-600 group-hover:text-white/90 mb-4">
-                Modern lighting installation and upgrades for enhanced ambiance and efficiency.
+                Modern lighting installation and upgrades for enhanced ambiance.
               </p>
               <ul className="space-y-2">
                 <li className="flex items-center">
@@ -177,10 +174,9 @@ export default function Residential() {
               </ul>
             </div>
 
-            {/* Service Card 3 */}
             <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
               <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
-                <WifiIcon className="h-8 w-8 text-primary group-hover:text-primary" />
+                <Wifi className="h-8 w-8 text-primary group-hover:text-primary" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Smart Home Integration</h3>
               <p className="text-gray-600 group-hover:text-white/90 mb-4">

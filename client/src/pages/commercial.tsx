@@ -9,10 +9,8 @@ import {
   Shield, 
   Award, 
   Building2, 
-  Zap,
-  Lightbulb, 
-  Activity, 
   PieChart, 
+  Activity,
   CheckCircle2 
 } from "lucide-react";
 
@@ -23,26 +21,11 @@ export default function Commercial() {
     retry: false
   });
 
-  const faqs = [
-    {
-      question: "What types of commercial properties do you service?",
-      answer: "We service all types of commercial properties including offices, retail spaces, restaurants, warehouses, manufacturing facilities, schools, healthcare facilities, and multi-unit residential buildings."
-    },
-    {
-      question: "How do you minimize disruption to our business operations?",
-      answer: "We understand that electrical work can impact your business operations. We offer flexible scheduling including nights and weekends, carefully plan work to minimize impact on critical areas, and maintain clear communication throughout the project."
-    },
-    {
-      question: "Do you handle commercial electrical code compliance?",
-      answer: "Absolutely. Our licensed commercial electricians are thoroughly versed in National Electrical Code (NEC) requirements as well as state and local regulations specific to commercial properties."
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      {/* Modern Hero Section */}
+      {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -125,7 +108,7 @@ export default function Commercial() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Service Card 1 */}
+            {/* Service Cards */}
             <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
               <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
                 <Building2 className="h-8 w-8 text-primary group-hover:text-primary" />
@@ -150,7 +133,6 @@ export default function Commercial() {
               </ul>
             </div>
 
-            {/* Service Card 2 */}
             <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
               <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
                 <PieChart className="h-8 w-8 text-primary group-hover:text-primary" />
@@ -175,7 +157,6 @@ export default function Commercial() {
               </ul>
             </div>
 
-            {/* Service Card 3 */}
             <div className="group bg-gray-50 rounded-2xl p-8 hover:bg-primary hover:text-white transition-all duration-300">
               <div className="bg-primary/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-white">
                 <Activity className="h-8 w-8 text-primary group-hover:text-primary" />
@@ -199,27 +180,6 @@ export default function Commercial() {
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Get answers to common questions about our commercial electrical services.
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            {faqs.map((faq, index) => (
-              <div key={index} className="mb-8">
-                <h3 className="text-xl font-semibold mb-2">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

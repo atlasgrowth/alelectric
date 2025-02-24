@@ -1,0 +1,13 @@
+{
+  "example_business": {
+    "name": "Example Electric",
+    "phone": "(555) 123-4567",
+    "city": "Example City",
+    "rating": "4.9",
+    "latitude": "34.7304",
+    "longitude": "-86.5861",
+    "reviews": "Great service!",
+    "reviews_link": "https://g.page/example",
+    "s": "example"
+  }
+}

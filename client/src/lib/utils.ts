@@ -39,10 +39,8 @@ export const getBusinessData = async () => {
   }
 
   try {
-    // Use a relative URL for GitHub Pages compatibility
-    const response = await fetch(
-      `${import.meta.env.MODE === 'production' ? '/alabamaelectric' : ''}/data/electricians.json`
-    );
+    // Use a relative URL that works for both development and GitHub Pages
+    const response = await fetch('/data/electricians.json');
 
     if (!response.ok) {
       throw new Error(`Failed to load business data: ${response.status}`);
